@@ -1,0 +1,4 @@
+Factura para Juan Pérez
+Dirección: Calle 1 #123, Ciudad de México, Ciudad de México, 01234
+Número de teléfono: 555-1234
+Total a pagar: $100.5

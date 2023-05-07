@@ -1,0 +1,9 @@
+0|avanzar|100|metros
+1|fotografiar|roca|'a'
+0|avanzar|5|metros
+0|girar|10|grados
+0|avanzar|50|metros
+1|fotografiar|roca|'b'
+0|girar|80|grados
+1|perforar|roca|'c'
+0|avanzar|100|metros

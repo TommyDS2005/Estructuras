@@ -92,11 +92,11 @@ std::vector<std::string> TokenizarEntradaUsuario (std::string entrada)
     return instrucciones;
 }
 
-vector<Point> puntoMaxyMin(std::list<sElemento> internal)
+std::vector<Point> puntoMaxyMin(std::list<sElemento> internal)
 {
-    vector<Point> puntos;
-    vector<float> x;
-    vector<float> y;
+    std::vector<Point> puntos;
+    std::vector<float> x;
+    std::vector<float> y;
     for (auto& t: internal)
     {
         x.push_back(t.coordenada_x);

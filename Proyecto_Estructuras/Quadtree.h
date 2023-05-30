@@ -14,7 +14,7 @@ public:
     const int MAX_POINTS = 1; // Máximo número de puntos que se pueden almacenar en un nodo
     const int MAX_LEVELS = 30; // Máxima profundidad del árbol
     int level; // Nivel del árbol
-    vector<sElemento> points; // Vector de puntos almacenados en el nodo
+    std::vector<sElemento> points; // Vector de puntos almacenados en el nodo
     Quadtree* nodes[4]; // Cuatro hijos del nodo (noroeste, noreste, suroeste, sureste)
     Point topLeft; // Coordenadas del punto superior izquierdo del área que abarca el nodo
     Point bottomRight; // Coordenadas del punto inferior derecho del área que abarca el nodo
@@ -98,8 +98,8 @@ public:
      */
 
     // Función para buscar los elementos dentro de un área específica
-    vector<sElemento> query(float x1, float y1, float x2, float y2, Quadtree* pQuadtree) {
-        vector<sElemento> result;
+    std::vector<sElemento> query(float x1, float y1, float x2, float y2, Quadtree* pQuadtree) {
+        std::vector<sElemento> result;
 
         // Caso base: si el área de búsqueda está completamente fuera del área del nodo actual, retorna el resultado vacío
         if (x2 < pQuadtree->topLeft.x || x1 > pQuadtree->bottomRight.x || y2 < pQuadtree->topLeft.y || y1 > pQuadtree->bottomRight.y) {
@@ -117,7 +117,7 @@ public:
         // Si el nodo actual tiene hijos, realiza la búsqueda recursiva en cada uno de ellos
         if (pQuadtree->nodes[0] != nullptr) {
             for (auto& node : pQuadtree->nodes) {
-                vector<sElemento> childResult = query(x1, y1, x2, y2, node);
+                std::vector<sElemento> childResult = query(x1, y1, x2, y2, node);
                 for (const auto& point : childResult) {
                     result.push_back(point);
                 }

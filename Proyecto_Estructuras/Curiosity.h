@@ -11,7 +11,6 @@
 #define PI 3.14159265359
 #ifndef PROYECTO_ESTRUCTURAS_CURIOSITY_H
 #define PROYECTO_ESTRUCTURAS_CURIOSITY_H
-using namespace std;
 struct sComandos
 {
     sComandos();
@@ -58,8 +57,8 @@ public:
     float orientacion;
     float coordenadas[2] = {0,0};
     sCuriosity();
-    [[maybe_unused]] sCuriosity(list<sComandos> comandos, std::list<sElemento> lista_elementos);
-    list<sComandos> getComandos();
+    sCuriosity(std::list<sComandos> comandos, std::list<sElemento> lista_elementos);
+    std::list<sComandos> getComandos();
     std::list<sElemento> getlista_Elementos();
     void cargar_comandos(std::string fileName);
     void agregar_comandos(sComandos &comandos);

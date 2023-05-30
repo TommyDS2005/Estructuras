@@ -19,6 +19,6 @@ void escribir_archivo_elementos(std::string filename, std::list<std::string> int
 
 std::vector<std::string> TokenizarEntradaUsuario(std::string entrada);
 
-vector<Point> puntoMaxyMin(std::list<sElemento> internal);
+std::vector<Point> puntoMaxyMin(std::list<sElemento> internal);
 
 #endif //PROYECTO_ESTRUCTURAS_DATE_H

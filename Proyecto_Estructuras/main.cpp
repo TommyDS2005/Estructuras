@@ -1,12 +1,14 @@
 
 #include "Curiosity.h"
 #include "Date.h"
+#include "Grafo.h"
 
 int main()
 {
 
     bool bandera = true;
     sCuriosity Curiosity;
+    Grafo *grafo;
     Quadtree *quadtree;
     while(bandera)
     {
@@ -36,6 +38,23 @@ int main()
             else if(comandos[0] == "salir")
             {
                 Curiosity.salir(bandera);
+            }
+            else if(comandos[0] == "ruta_mas_larga")
+            {
+                std::cout << "a" << std::endl;
+                bool exist = true;
+                if(grafo->insertados.size() == 0)
+                {
+                    exist = false;
+                }
+                if(exist == true)
+                {
+                    grafo->ruta_mas_larga();
+                }
+                else
+                {
+                    std::cout << "(No hay informacion) El mapa no ha sido generado todavia (con el comando crear_mapa)." << std::endl;
+                }
             }
             else if(comandos[0] == "obtener_comandos")
             {
@@ -91,6 +110,51 @@ int main()
             else if(comandos[0] == "cargar_elementos")
             {
                 Curiosity.cargar_elementos(comandos[1]);
+            }
+            else if(comandos[0] == "crear_mapa")
+            {
+                if(Curiosity.lista_elementos.empty())
+                {
+                    std::cout << "La informacion requerida no esta almacenada en memoria" << std::endl;
+                }
+                else
+                {
+                    bool numeric;
+                    for(char i : comandos[1])
+                    {
+                        if(!isdigit(i))
+                        {
+                            numeric = false;
+                        }
+                        else
+                        {
+                            numeric = true;
+                        }
+                    }
+                    if(numeric)
+                    {
+                        if(std::stof(comandos[1]) > 0 && std::stof(comandos[1]) < 1)
+                        {
+                            std::vector<sElemento> c;
+                            for(auto &a: Curiosity.lista_elementos)
+                            {
+                                c.push_back(a);
+                            }
+                            grafo = new Grafo(std::stof(comandos[1]));
+                            grafo->insertarNodo(c);
+                            grafo->Conectar();
+                            grafo->imprimir();
+                        }
+                        else
+                        {
+                            std::cout << "El coeficiente debe estar entre 0 y 1" << std::endl;
+                        }
+                    }
+                    else
+                    {
+                        std::cout << "El coeficiente debe ser numerico" << std::endl;
+                    }
+                }
             }
             else
             {
@@ -195,11 +259,31 @@ int main()
 
         else if(comandos.size() == 5)
         {
-            vector<sElemento> elementos;
+            std::vector<sElemento> elementos;
             if (comandos[0] == "en_cuadrante") {
-                elementos = quadtree->query(stof(comandos[1]), stof(comandos[2]), stof(comandos[3]), stof(comandos[4]), quadtree);
-                for (auto &e: elementos) {
-                    std::cout << e.tipo_elemento << " " << e.tamaño << " " << e.unidad_medida << " " << e.coordenada_x << " " << e.coordenada_y << std::endl;
+                bool valido = true;
+                for(int i=1; i<5; i++)
+                {
+                    for (auto& c: comandos[i])
+                    {
+                        if (!isdigit(c))
+                        {
+                            valido = false;
+                        }
+                    }
+                }
+                if(valido)
+                {
+                    elementos = quadtree->query(stof(comandos[1]), stof(comandos[2]), stof(comandos[3]),
+                                                stof(comandos[4]), quadtree);
+                    for (auto &e: elementos) {
+                        std::cout << e.tipo_elemento << " " << e.tamaño << " " << e.unidad_medida << " "
+                                  << e.coordenada_x << " " << e.coordenada_y << std::endl;
+                    }
+                }
+                else
+                {
+                    std::cout << "Los limites del cuadrante no son numeros" << std::endl;
                 }
             }
             else

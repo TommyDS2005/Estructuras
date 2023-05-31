@@ -1,0 +1,7 @@
+0|avanzar|100|metros
+0|girar|90|grados
+0|avanzar|100|metros
+0|girar|90|grados
+0|avanzar|100|metros
+0|girar|90|grados
+0|avanzar|100|metros
